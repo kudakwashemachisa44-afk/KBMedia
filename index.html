@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KB Media | Editorial Photo & Media</title>
+    <style>
+        :root {
+            --bg-dark: #070707;
+            --card-dark: #121212;
+            --accent-white: #ffffff;
+            --text-main: #f5f5f7;
+            --text-muted: #86868b;
+            --border-color: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* HEADER NAVBAR */
+        header {
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(7, 7, 7, 0.92);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+        }
+
+        .brand-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* CUSTOM LOGO MATCH (K FUSED WITH 3 / B) */
+        .logo-text-fused {
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .logo-text-fused .fused-mark {
+            background: #fff;
+            color: #000;
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-right: 6px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        nav { display: flex; gap: 1.8rem; }
+
+        .nav-item { position: relative; }
+        .nav-link {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            padding: 10px 0;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: var(--accent-white); }
+
+        /* DROPDOWN MENU */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #111;
+            border: 1px solid var(--border-color);
+            padding: 12px 0;
+            min-width: 200px;
+            display: none;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .nav-item:hover .dropdown { display: block; }
+
+        .dropdown a {
+            display: block;
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .dropdown a:hover {
+            color: var(--accent-white);
+            background: #1a1a1a;
+            padding-left: 24px;
+        }
+
+        /* LANDSCAPE HERO SLIDESHOW */
+        .hero-slideshow {
+            margin-top: 75px;
+            position: relative;
+            height: 68vh;
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .slide.active { opacity: 1; }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+        }
+
+        .slide-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.65);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* EDITORIAL INTRO SECTION */
+        .intro-section {
+            text-align: center;
+            max-width: 850px;
+            margin: 4rem auto 2.5rem;
+            padding: 0 20px;
+        }
+
+        .intro-section h1 {
+            font-size: clamp(1.8rem, 4.5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .intro-section p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .btn-pill {
+            display: inline-block;
+            border: 1px solid var(--accent-white);
+            color: var(--accent-white);
+            padding: 10px 28px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn-pill:hover {
+            background: var(--accent-white);
+            color: #000;
+        }
+
+        /* PREVIEW GRID */
+        .preview-grid-section {
+            max-width: 1300px;
+            margin: 2rem auto 5rem;
+            padding: 0 20px;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .grid-tile {
+            position: relative;
+            aspect-ratio: 4/5;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .grid-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .grid-tile:hover img { transform: scale(1.05); }
+
+        /* QUOTE & INFO SECTION */
+        .quote-section {
+            background: var(--card-dark);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 5rem 20px;
+            text-align: center;
+        }
+
+        .quote-box {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .quote-box blockquote {
+            font-size: 1.6rem;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            font-family: Georgia, serif;
+        }
+
+        .quote-box cite {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 2rem;
+        }
+
+        /* INSTAGRAM EMBED OVERLAY */
+        .insta-section {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .insta-tile {
+            aspect-ratio: 1/1;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .insta-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .insta-overlay-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(10, 10, 10, 0.92);
+            border: 1px solid var(--accent-white);
+            padding: 25px 35px;
+            text-align: center;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            width: 85%;
+            max-width: 360px;
+        }
+
+        .insta-overlay-card h3 {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .insta-overlay-card .handle {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--accent-white);
+        }
+
+        /* MOBILE RESPONSIVE MEDIA QUERIES */
+        @media(max-width: 768px) {
+            header { padding: 1rem 4%; }
+            nav { gap: 0.9rem; }
+            .nav-link { font-size: 0.75rem; }
+            .hero-slideshow { height: 45vh; margin-top: 65px; }
+            .insta-grid { grid-template-columns: repeat(2, 1fr); }
+            .preview-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        footer a { color: var(--accent-white); }
+    </style>
+</head>
+<body>
+
+    <!-- TOP HEADER NAVBAR -->
+    <header>
+        <a href="index.html" class="brand-wrapper">
+            <img src="logo.jpeg" alt="KB Media Logo" class="brand-logo-img">
+            <!-- Fused KB Media Logo Styling -->
+            <div class="logo-text-fused">
+                <span class="fused-mark">K3</span> MEDIA
+            </div>
+        </a>
+
+        <nav>
+            <div class="nav-item">
+                <a href="index.html" class="nav-link">HOME</a>
+            </div>
+            <div class="nav-item">
+                <a href="portfolio.html" class="nav-link">PORTFOLIO</a>
+                <div class="dropdown">
+                    <a href="portfolio.html?cat=sports">Sports</a>
+                    <a href="portfolio.html?cat=portraits">Portraits</a>
+                    <a href="portfolio.html?cat=cars">Automotive</a>
+                    <a href="portfolio.html?cat=church">Church</a>
+                    <a href="portfolio.html?cat=weddings">Weddings</a>
+                    <a href="portfolio.html?cat=realestate">Real Estate</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#info" class="nav-link">INFO</a>
+                <div class="dropdown">
+                    <a href="#about">About KB Media</a>
+                    <a href="#contact">Email & Contact</a>
+                    <a href="https://facebook.com/" target="_blank">Facebook Page</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#contact" class="nav-link">CONTACT</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- LANDSCAPE-ONLY HERO SLIDESHOW -->
+    <section class="hero-slideshow">
+        <div class="slide active"><img src="images/imagesSports/Sports-14.jpg" alt="Landscape Sports Action"></div>
+        <div class="slide"><img src="images/imageCars/Car-1.jpg" alt="Landscape Automotive"></div>
+        <div class="slide"><img src="images/imagesSports/Sports-11.jpg" alt="Landscape Soccer Field"></div>
+        <div class="slide"><img src="images/imageChurch/Church-4.jpg" alt="Landscape Church Service"></div>
+        <div class="slide"><img src="images/imagesRealestate/Realestate-1.jpg" alt="Landscape Real Estate"></div>
+        
+        <div class="slide-counter" id="slideCounter">1 / 5</div>
+    </section>
+
+    <!-- EDITORIAL INTRO SECTION -->
+    <section class="intro-section" id="about">
+        <h1>Vernon & Okanagan Sports, Portrait, and Event Photography</h1>
+        <p>KB Media brings high-energy sports action, tailored portraits, and authentic media stories to life across the Okanagan region. Powered by clean composition and sharp visual narrative.</p>
+        <a href="portfolio.html" class="btn-pill">Explore Full Portfolio</a>
+    </section>
+
+    <!-- HIGHLIGHT PREVIEW GRID -->
+    <section class="preview-grid-section">
+        <div class="preview-grid">
+            <div class="grid-tile"><img src="images/imagesPortraits/Portrait-2.jpg" alt="Teaser 1"></div>
+            <div class="grid-tile"><img src="images/imagesSports/Sports-12.jpg" alt="Teaser 2"></div>
+            <div class="grid-tile"><img src="images/imageCars/Car-2.jpg" alt="Teaser 3"></div>
+            <div class="grid-tile"><img src="images/imagesRealestate/Realestate-3.jpg" alt="Teaser 4"></div>
+        </div>
+    </section>
+
+    <!-- QUOTE & CONTACT SECTION -->
+    <section class="quote-section" id="info">
+        <div class="quote-box">
+            <blockquote>"Great photography isn't just taking pictures; it's capturing moments that redefine the narrative."</blockquote>
+            <cite>~ KB Media</cite>
+            <p style="color: var(--text-muted); font-size:0.95rem; margin-bottom: 2rem;" id="contact">
+                <strong>Direct Contact & Booking:</strong><br>
+                Email: <a href="mailto:kbmedia.official@gmail.com" style="color:#fff;">kbmedia.official@gmail.com</a><br>
+                Location: Vernon & Kelowna, BC
+            </p>
+            <a href="https://www.instagram.com/" target="_blank" class="btn-pill">Book A Session</a>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM OVERLAY SECTION -->
+    <section class="insta-section">
+        <div class="insta-grid">
+            <div class="insta-tile"><img src="images/imagesSports/Sports-4.jpg" alt="Insta 1"></div>
+            <div class="insta-tile"><img src="images/imagesPortraits/Portrait-4.jpg" alt="Insta 2"></div>
+            <div class="insta-tile"><img src="images/imageCars/Car-3.jpg" alt="Insta 3"></div>
+            <div class="insta-tile"><img src="images/imageChurch/Church-2.jpg" alt="Insta 4"></div>
+        </div>
+        
+        <a href="https://www.instagram.com/" target="_blank" class="insta-overlay-card">
+            <h3>Follow Me On Instagram</h3>
+            <div class="handle">@KB_MEDIA</div>
+        </a>
+    </section>
+
+    <footer>
+        &copy; 2026 KB Media. Photo • Video • Content. | <a href="https://facebook.com/" target="_blank">Facebook</a>
+    </footer>
+
+    <script>
+        // SLIDESHOW CONTROLLER
+        const slides = document.querySelectorAll('.slide');
+        const counter = document.getElementById('slideCounter');
+        let currentSlide = 0;
+
+        function cycleSlides() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+            counter.innerText = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        setInterval(cycleSlides, 4000);
+    </script>
+</body>
+</html>
