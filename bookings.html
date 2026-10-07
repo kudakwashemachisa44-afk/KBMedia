@@ -74,6 +74,26 @@
 
         .form-control:focus { outline: none; border-color: #fff; }
 
+        /* FULLY CLICKABLE DATE INPUT FIX */
+        input[type="date"].form-control {
+            position: relative;
+            cursor: pointer;
+            color-scheme: dark;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            background: transparent;
+            bottom: 0;
+            color: transparent;
+            cursor: pointer;
+            height: auto;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto;
+        }
+
         .btn-submit {
             width: 100%;
             background: var(--accent-white);
@@ -124,7 +144,7 @@
 
     <div class="booking-container">
         <div class="booking-card">
-            <form id="bookingForm" action="https://formspree.io/f/kbmedia.ca@gmail.com" method="POST" onsubmit="handleFormSubmit(event)">
+            <form id="bookingForm" action="https://formspree.io/f/maeqeewd" method="POST" onsubmit="handleFormSubmit(event)">
                 <div class="booking-header">
                     <h1>Media Session Booking</h1>
                     <p>Enter your shoot details below and KB Media will get back to you within 24 hours.</p>
@@ -171,7 +191,7 @@
                     </div>
                     <div class="form-group">
                         <label>Booking Date</label>
-                        <input type="date" name="date" class="form-control" required>
+                        <input type="date" name="date" class="form-control" onclick="this.showPicker()" required>
                     </div>
                 </div>
 
@@ -216,8 +236,7 @@
                     alert("There was an issue sending your booking request. Please try again or email kbmedia.ca@gmail.com directly.");
                 }
             } catch (error) {
-                form.style.display = 'none';
-                document.getElementById('successScreen').style.display = 'block';
+                alert("Network error. Please try again or email kbmedia.ca@gmail.com directly.");
             }
         }
     </script>
