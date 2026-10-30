@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KB Media | About & Services</title>
+    <meta name="description" content="KB Media is a Vernon, BC photographer covering sports, portraits and events across the Okanagan, with on-site prints at matchdays and tournaments.">
+    <meta property="og:title" content="KB Media | About & Services">
+    <meta property="og:image" content="https://kbmediaca.com/images/imagesSports/Sports-36.jpg">
+    <link rel="icon" href="logo.jpeg">
+    <style>
+        :root {
+            --bg-dark: #070707;
+            --card-dark: #121212;
+            --accent-white: #ffffff;
+            --text-main: #f5f5f7;
+            --text-muted: #86868b;
+            --border-color: #222222;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+
+        header {
+            padding: 0.9rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(7, 7, 7, 0.95);
+            position: sticky; top: 0; z-index: 1000;
+            backdrop-filter: blur(12px);
+        }
+
+        .brand-wrapper { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+        .brand-logo-img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255, 255, 255, 0.3); }
+
+        .logo-text-fused {
+            display: flex; align-items: center; font-size: 1.05rem; font-weight: 900;
+            letter-spacing: 0.5px; color: #fff; text-transform: uppercase; white-space: nowrap;
+        }
+        .logo-text-fused .fused-mark {
+            background: #fff; color: #000; padding: 1px 5px; border-radius: 4px; margin-right: 5px; font-weight: 900;
+        }
+
+        nav { display: flex; gap: 1.2rem; align-items: center; }
+        .nav-link { font-size: 0.78rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; white-space: nowrap; }
+        .nav-link:hover { color: var(--accent-white); }
+        .nav-cta { color: #000; background: var(--accent-white); padding: 6px 12px; border-radius: 20px; }
+        .nav-cta:hover { color: #000; background: #e0e0e0; }
+
+        main { max-width: 1100px; margin: 0 auto; padding: 3rem 20px 4rem; }
+
+        .about-split { display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: center; margin-bottom: 4.5rem; }
+        .about-img { flex: 0 1 380px; aspect-ratio: 4/5; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
+        .about-img img { width: 100%; height: 100%; object-fit: cover; }
+        .about-text { flex: 1; min-width: 280px; }
+        .eyebrow { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.6rem; }
+        h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 1rem; line-height: 1.2; }
+        h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 1.5rem; text-align: center; }
+        .about-text p { color: var(--text-muted); margin-bottom: 1rem; }
+
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 4.5rem; }
+        .service-card { background: var(--card-dark); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.6rem; }
+        .service-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+        .service-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 4.5rem; counter-reset: step; }
+        .step { border-top: 2px solid var(--accent-white); padding-top: 1rem; }
+        .step::before { counter-increment: step; content: "0" counter(step); font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; color: var(--text-muted); }
+        .step h3 { font-size: 1rem; margin: 0.3rem 0; }
+        .step p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .contact-card { background: var(--card-dark); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.5rem; text-align: center; }
+        .contact-card p { color: var(--text-muted); margin-bottom: 1.5rem; }
+        .contact-card a.link { color: #fff; font-weight: 700; }
+
+        .btn-pill {
+            display: inline-block; border: 1px solid var(--accent-white); color: #000; background: var(--accent-white);
+            padding: 10px 26px; border-radius: 30px; font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase; transition: background 0.3s;
+        }
+        .btn-pill:hover { background: #e0e0e0; }
+
+        @media(max-width: 480px) {
+            header { padding: 0.6rem 3%; }
+            .brand-logo-img { width: 30px; height: 30px; }
+            .logo-text-fused { font-size: 0.85rem; }
+            nav { gap: 0.7rem; }
+            .nav-link { font-size: 0.68rem; }
+            .nav-home { display: none; }
+            .contact-card { padding: 1.5rem; }
+        }
+
+        footer { text-align: center; padding: 2rem 1rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem; }
+        footer a { color: var(--accent-white); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="brand-wrapper">
+            <img src="logo.jpeg" alt="KB Media Logo" class="brand-logo-img">
+            <div class="logo-text-fused"><span class="fused-mark">KB</span> MEDIA</div>
+        </a>
+        <nav>
+            <a href="index.html" class="nav-link nav-home">HOME</a>
+            <a href="portfolio.html" class="nav-link">PORTFOLIO</a>
+            <a href="about.html" class="nav-link" style="color:#fff;">ABOUT</a>
+            <a href="bookings.html" class="nav-link nav-cta">BOOK</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-split">
+            <div class="about-img"><img src="images/imagesSports/Sports-36.jpg" alt="Players shaking hands after a match"></div>
+            <div class="about-text">
+                <p class="eyebrow">About KB Media</p>
+                <h1>A photographer who plays the game too</h1>
+                <p>KB Media is based in Vernon, BC and shoots sports, portraits and events across the Okanagan. I play in the Vernon and Kelowna men's soccer leagues, so I know where the moments happen and how fast they go.</p>
+                <p>From matchday action and team photos to portraits and community events, the goal is the same: real moments, edited cleanly and delivered fast. At tournaments and matchdays I can also print your favourite shots on the spot, so players and families take them home the same day.</p>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2>Services</h2>
+            <div class="services">
+                <div class="service-card">
+                    <h3>Matchday Coverage</h3>
+                    <p>Full-game action for soccer, baseball and softball. Individual players or the whole team, edited and delivered online.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Team & Club Picture Day</h3>
+                    <p>Team photos and individual player portraits for leagues, clubs and school teams, organised so the day runs quickly.</p>
+                </div>
+                <div class="service-card">
+                    <h3>On-Site Print Booth</h3>
+                    <p>Prints made at the field or venue during tournaments and events, ready to take home before the final whistle.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Portraits</h3>
+                    <p>Athlete, lifestyle and seasonal portraits around the Okanagan, from lakeside spots to the orchard.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Events</h3>
+                    <p>Church services, community nights and celebrations, captured quietly and naturally.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Real Estate</h3>
+                    <p>Bright, wide interior and exterior photos for listings and rentals.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step"><h3>Send a request</h3><p>Fill in the booking form with your date, location and what you need.</p></div>
+                <div class="step"><h3>Confirm the plan</h3><p>KB Media replies within 24 hours to confirm availability and the details.</p></div>
+                <div class="step"><h3>Shoot day</h3><p>Show up and play. Prints are available on-site if you've booked the print booth.</p></div>
+                <div class="step"><h3>Get your photos</h3><p>Edited, high-resolution photos delivered online.</p></div>
+            </div>
+        </section>
+
+        <section class="contact-card" id="contact">
+            <h2>Contact</h2>
+            <p>Email <a class="link" href="mailto:kbmedia.ca@gmail.com">kbmedia.ca@gmail.com</a> or message <a class="link" href="https://www.instagram.com/kbmedia.ca/" target="_blank">@kbmedia.ca</a> on Instagram.<br>Based in Vernon, BC. Shooting across Kelowna and the Okanagan Valley.</p>
+            <a href="bookings.html" class="btn-pill">Book a Session</a>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 KB Media. Photo • Video • Content. | Based in Vernon, BC • <a href="https://www.instagram.com/kbmedia.ca/" target="_blank">Instagram</a>
+    </footer>
+</body>
+</html>

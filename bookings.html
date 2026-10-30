@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KB Media | Book a Session</title>
+    <meta name="description" content="Book KB Media for sports, team picture day, real estate, portrait or event photography in Vernon, Kelowna and the Okanagan.">
+    <link rel="icon" href="logo.jpeg">
     <style>
         :root {
             --bg-dark: #070707;
@@ -146,11 +148,12 @@
     <header>
         <a href="index.html" class="brand-wrapper">
             <img src="logo.jpeg" alt="KB Media Logo" class="brand-logo-img">
-            <div class="logo-text-fused"><span class="fused-mark">K3</span> MEDIA</div>
+            <div class="logo-text-fused"><span class="fused-mark">KB</span> MEDIA</div>
         </a>
         <nav>
             <a href="index.html" class="nav-link">HOME</a>
             <a href="portfolio.html" class="nav-link">PORTFOLIO</a>
+            <a href="about.html" class="nav-link">ABOUT</a>
             <a href="https://www.instagram.com/kbmedia.ca/" target="_blank" class="nav-link">INSTAGRAM</a>
         </nav>
     </header>
@@ -195,6 +198,7 @@
                         <label>Service Required</label>
                         <select name="service" class="form-control" required>
                             <option value="Sports Action">Sports Action Coverage</option>
+                            <option value="Team Picture Day">Team / Club Picture Day</option>
                             <option value="Real Estate">Real Estate Media</option>
                             <option value="Portraits / Headshots">Portraits & Headshots</option>
                             <option value="On-Site Print Booth">On-Site Print Booth Setup</option>
@@ -222,20 +226,21 @@
 
             <div class="success-screen" id="successScreen">
                 <div class="success-icon">✓</div>
-                <h2>Successfully Booked!</h2>
-                <p>Your session request has been received. KB Media will review your details and reach out to your provided email/phone shortly.</p>
+                <h2>Request Received!</h2>
+                <p>Thanks! KB Media will check availability and confirm your session by email or phone within 24 hours.</p>
                 <a href="index.html" class="btn-submit" style="display: inline-block; width: auto; padding: 10px 24px;">Return to Home</a>
             </div>
         </div>
     </div>
 
     <footer>
-        &copy; 2026 KB Media. Photo • Video • Content. | Vernon & Kelowna, BC
+        &copy; 2026 KB Media. Photo • Video • Content. | Based in Vernon, BC
     </footer>
 
     <script>
         // Set minimum selectable date to today
-        const todayStr = new Date().toISOString().split('T')[0];
+        const today = new Date();
+        const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
         const dateInput = document.getElementById('bookingDateInput');
         dateInput.setAttribute('min', todayStr);
 

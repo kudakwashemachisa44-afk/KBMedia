@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KB Media | Master Media Archive</title>
+    <title>KB Media | Portfolio</title>
+    <meta name="description" content="Portfolio of KB Media: soccer, baseball, portraits, events and real estate across the Okanagan, based in Vernon, BC.">
+    <meta property="og:title" content="KB Media | Portfolio">
+    <meta property="og:image" content="https://kbmediaca.com/images/imagesSports/Sports-10.jpg">
+    <link rel="icon" href="logo.jpeg">
     <style>
         :root {
             --bg-dark: #050505;
@@ -44,6 +48,8 @@
         nav { display: flex; gap: 1.2rem; align-items: center; }
         .nav-link { font-size: 0.78rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; white-space: nowrap; }
         .nav-link:hover { color: var(--accent-white); }
+        .nav-cta { color: #000 !important; background: var(--accent-white); padding: 6px 12px; border-radius: 20px; }
+        .nav-cta:hover { background: #e0e0e0; }
 
         .portfolio-header { text-align: center; padding: 2.5rem 1rem 0.8rem; }
         .portfolio-header h1 { font-size: 2rem; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 8px; }
@@ -104,6 +110,7 @@
             .logo-text-fused { font-size: 0.85rem; }
             nav { gap: 0.6rem; }
             .nav-link { font-size: 0.68rem; }
+            .nav-home { display: none; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
             .item-overlay { opacity: 1; }
             .lightbox-arrow { width: 36px; height: 36px; font-size: 1.3rem; }
@@ -120,29 +127,29 @@
     <header>
         <a href="index.html" class="brand-wrapper">
             <img src="logo.jpeg" alt="KB Media Logo" class="brand-logo-img">
-            <div class="logo-text-fused"><span class="fused-mark">K3</span> MEDIA</div>
+            <div class="logo-text-fused"><span class="fused-mark">KB</span> MEDIA</div>
         </a>
 
         <nav>
-            <a href="index.html" class="nav-link">HOME</a>
+            <a href="index.html" class="nav-link nav-home">HOME</a>
             <a href="portfolio.html" class="nav-link" style="color:#fff;">PORTFOLIO</a>
-            <a href="index.html#info-contact" class="nav-link">INFO & CONTACT</a>
-            <a href="bookings.html" class="nav-link">BOOK NOW</a>
+            <a href="about.html" class="nav-link">ABOUT</a>
+            <a href="bookings.html" class="nav-link nav-cta">BOOK</a>
         </nav>
     </header>
 
     <div class="portfolio-header">
-        <h1>Master Media Archive</h1>
+        <h1>Portfolio</h1>
     </div>
 
     <section class="filters">
-        <button class="filter-btn active" onclick="filterGallery('all', event)">All Work</button>
-        <button class="filter-btn" onclick="filterGallery('sports', event)">Sports</button>
-        <button class="filter-btn" onclick="filterGallery('portraits', event)">Portraits</button>
-        <button class="filter-btn" onclick="filterGallery('cars', event)">Automotive</button>
-        <button class="filter-btn" onclick="filterGallery('church', event)">Church</button>
-        <button class="filter-btn" onclick="filterGallery('weddings', event)">Weddings</button>
-        <button class="filter-btn" onclick="filterGallery('realestate', event)">Real Estate</button>
+        <button class="filter-btn" data-cat="all" onclick="filterGallery('all')">All Work</button>
+        <button class="filter-btn" data-cat="sports" onclick="filterGallery('sports')">Soccer</button>
+        <button class="filter-btn" data-cat="baseball" onclick="filterGallery('baseball')">Baseball & Softball</button>
+        <button class="filter-btn" data-cat="portraits" onclick="filterGallery('portraits')">Portraits</button>
+        <button class="filter-btn" data-cat="church" onclick="filterGallery('church')">Events</button>
+        <button class="filter-btn" data-cat="realestate" onclick="filterGallery('realestate')">Real Estate</button>
+        <button class="filter-btn" data-cat="cars" onclick="filterGallery('cars')">Automotive</button>
     </section>
 
     <section class="gallery-container">
@@ -161,41 +168,31 @@
     </footer>
 
     <script>
-        const portfolioData = [];
-
-        // Sports (1-28)
-        for (let i = 1; i <= 28; i++) {
-            portfolioData.push({ category: 'sports', tag: 'Sports', title: `Sports Capture #${i}`, src: `images/imagesSports/Sports-${i}.jpg` });
-        }
-        // Real Estate (1-18)
-        for (let i = 1; i <= 18; i++) {
-            portfolioData.push({ category: 'realestate', tag: 'Real Estate', title: `Property #${i}`, src: `images/imagesRealestate/Realestate-${i}.jpg` });
-        }
-        // Portraits (1-8)
-        for (let i = 1; i <= 8; i++) {
-            portfolioData.push({ category: 'portraits', tag: 'Portraits', title: `Portrait #${i}`, src: `images/imagesPortraits/Portrait-${i}.jpg` });
-        }
-        // Church (1-5)
-        for (let i = 1; i <= 5; i++) {
-            portfolioData.push({ category: 'church', tag: 'Church', title: `Church Media #${i}`, src: `images/imageChurch/Church-${i}.jpg` });
-        }
-        // Automotive (1-5)
-        for (let i = 1; i <= 5; i++) {
-            portfolioData.push({ category: 'cars', tag: 'Automotive', title: `Car Shoot #${i}`, src: `images/imageCars/Car-${i}.jpg` });
-        }
-        // Weddings
-        const weddings = [
-            'https://images.unsplash.com/photo-1519741497674-611481863552?w=800',
-            'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800',
-            'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800'
+        // To add a photo: put the full-size file in the folder, then add its number to the list below.
+        // Each category shows in the order listed, best shots first.
+        const categories = [
+            { key: 'sports',     tag: 'Soccer',      folder: 'imagesSports',     prefix: 'Sports',     nums: [9, 29, 10, 30, 21, 31, 7, 32, 33, 15, 14, 35, 36, 27, 37, 22, 38, 26, 39, 24, 40, 41, 3, 42, 17, 43, 4, 44, 45, 23, 46, 11, 47, 48, 28, 49, 25, 50, 51, 20, 52, 6, 53, 5, 54, 18, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86] },
+            { key: 'baseball',   tag: 'Baseball',    folder: 'imagesSports',     prefix: 'Sports',     nums: [87, 12, 88, 89, 1, 90, 91, 2, 92, 93, 94, 8, 95, 96, 97, 98, 99, 100, 101, 102] },
+            { key: 'portraits',  tag: 'Portraits',   folder: 'imagesPortraits',  prefix: 'Portrait',   nums: [10, 4, 13, 11, 2, 12, 15, 9, 16, 14, 5, 17, 18, 3, 19, 20, 7, 21, 22, 6, 8, 23, 1] },
+            { key: 'church',     tag: 'Events',      folder: 'imageChurch',      prefix: 'Church',     nums: [8, 7, 1, 9, 2, 3, 4, 5, 6] },
+            { key: 'realestate', tag: 'Real Estate', folder: 'imagesRealestate', prefix: 'Realestate', nums: [6, 5, 2, 4, 9, 7, 10, 16, 18] },
+            { key: 'cars',       tag: 'Automotive',  folder: 'imageCars',        prefix: 'Car',        nums: [2, 3, 1, 4, 5] }
         ];
-        weddings.forEach((url, index) => {
-            portfolioData.push({ category: 'weddings', tag: 'Weddings', title: `Wedding #${index + 1}`, src: url });
-        });
 
-        function shuffle(arr) { return arr.slice().sort(() => Math.random() - 0.5); }
+        const byCategory = categories.map(c => c.nums.map(n => ({
+            category: c.key,
+            tag: c.tag,
+            title: `${c.tag} photo by KB Media`,
+            thumb: `images/thumbs/${c.folder}/${c.prefix}-${n}.jpg`,
+            src: `images/${c.folder}/${c.prefix}-${n}.jpg`
+        })));
 
-        const shuffledData = shuffle(portfolioData);
+        // "All Work" mixes the categories in turn so it doesn't open with 80 soccer photos in a row.
+        const portfolioData = [];
+        for (let i = 0; i < Math.max(...byCategory.map(l => l.length)); i++) {
+            byCategory.forEach(l => { if (l[i]) portfolioData.push(l[i]); });
+        }
+
         let activeItemsList = [];
         let currentLightboxIndex = 0;
 
@@ -203,23 +200,23 @@
             const grid = document.getElementById('galleryGrid');
             grid.innerHTML = '';
 
-            activeItemsList = (cat === 'all') ? shuffledData : portfolioData.filter(i => i.category === cat);
+            activeItemsList = (cat === 'all') ? portfolioData : portfolioData.filter(i => i.category === cat);
 
             activeItemsList.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = `gallery-item`;
                 card.onclick = () => openLightbox(index);
                 card.innerHTML = `
-                    <img src="${item.src}" alt="${item.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800';">
+                    <img src="${item.thumb}" alt="${item.title}" loading="lazy" onerror="this.closest('.gallery-item').remove();">
                     <div class="item-overlay"><span class="item-tag">${item.tag}</span></div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        function filterGallery(category, event) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            if(event) event.target.classList.add('active');
+        function filterGallery(category) {
+            if (!categories.some(c => c.key === category)) category = 'all';
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === category));
             renderGrid(category);
         }
 
@@ -245,9 +242,23 @@
             }
         });
 
+        document.getElementById('lightboxModal').addEventListener('click', (e) => {
+            if (e.target.id === 'lightboxModal') closeLightbox();
+        });
+
+        // Swipe left/right on phones to move through the lightbox.
+        let touchStartX = null;
+        const lightbox = document.getElementById('lightboxModal');
+        lightbox.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        lightbox.addEventListener('touchend', (e) => {
+            if (touchStartX === null) return;
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 50) navigateLightbox(dx < 0 ? 1 : -1);
+            touchStartX = null;
+        });
+
         const urlParams = new URLSearchParams(window.location.search);
-        const urlCat = urlParams.get('cat') || 'all';
-        renderGrid(urlCat);
+        filterGallery(urlParams.get('cat') || 'all');
     </script>
 </body>
 </html>

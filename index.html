@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KB Media | Vernon & Okanagan Photography</title>
+    <title>KB Media | Okanagan Sports, Portrait & Event Photography</title>
+    <meta name="description" content="Sports, portrait and event photography across the Okanagan, based in Vernon, BC. Matchday action, team photos and on-site prints.">
+    <meta property="og:title" content="KB Media | Okanagan Sports, Portrait & Event Photography">
+    <meta property="og:description" content="Sports, portrait and event photography across the Okanagan, based in Vernon, BC.">
+    <meta property="og:image" content="https://kbmediaca.com/images/imagesSports/Sports-9.jpg">
+    <meta property="og:url" content="https://kbmediaca.com/">
+    <link rel="icon" href="logo.jpeg">
     <style>
         :root {
             --bg-dark: #070707;
@@ -44,10 +50,12 @@
         .nav-item { position: relative; }
         .nav-link { font-size: 0.78rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; padding: 6px 0; white-space: nowrap; transition: color 0.2s; }
         .nav-link:hover { color: var(--accent-white); }
+        .nav-cta { color: #000; background: var(--accent-white); padding: 6px 12px; border-radius: 20px; }
+        .nav-cta:hover { color: #000; background: #e0e0e0; }
 
         .dropdown {
             position: absolute; top: 100%; right: 0; background: #111;
-            border: 1px solid var(--border-color); padding: 10px 0; min-width: 180px;
+            border: 1px solid var(--border-color); padding: 10px 0; min-width: 190px;
             display: none; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
@@ -72,6 +80,7 @@
         .intro-section { text-align: center; max-width: 850px; margin: 3.5rem auto 2rem; padding: 0 20px; }
         .intro-section h1 { font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.5px; }
         .intro-section p { color: var(--text-muted); font-size: 1rem; line-height: 1.7; margin-bottom: 1.8rem; }
+        .btn-row { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
 
         .btn-pill {
             display: inline-block; border: 1px solid var(--accent-white); color: var(--accent-white);
@@ -79,14 +88,22 @@
             letter-spacing: 1px; text-transform: uppercase; cursor: pointer; background: transparent; transition: all 0.3s;
         }
 
-        .btn-pill:hover { background: var(--accent-white); color: #000; }
+        .btn-pill:hover, .btn-pill.solid { background: var(--accent-white); color: #000; }
+        .btn-pill.solid:hover { background: #e0e0e0; }
 
         .preview-grid-section { max-width: 1300px; margin: 2rem auto 4rem; padding: 0 15px; }
+        .section-label { text-align: center; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.2rem; }
         .preview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
 
-        .grid-tile { position: relative; aspect-ratio: 4/5; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
+        .grid-tile { position: relative; display: block; aspect-ratio: 4/5; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); }
         .grid-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .grid-tile:hover img { transform: scale(1.05); }
+        .tile-label {
+            position: absolute; left: 0; right: 0; bottom: 0; padding: 2.5rem 1rem 0.9rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
+            font-size: 0.85rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+        }
+        .tile-label span { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.5px; text-transform: none; color: #ccc; }
 
         .feature-card-section { max-width: 1100px; margin: 0 auto 4rem; padding: 0 20px; }
         .feature-box {
@@ -96,6 +113,8 @@
         .feature-text { flex: 1; min-width: 280px; }
         .feature-text h2 { font-size: 1.5rem; margin-bottom: 0.8rem; }
         .feature-text p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.2rem; }
+        .feature-img { flex: 0 1 320px; aspect-ratio: 4/5; border-radius: 8px; overflow: hidden; }
+        .feature-img img { width: 100%; height: 100%; object-fit: cover; }
 
         .quote-section {
             background: var(--card-dark); border-top: 1px solid var(--border-color);
@@ -130,10 +149,12 @@
             header { padding: 0.6rem 3%; }
             .brand-logo-img { width: 30px; height: 30px; }
             .logo-text-fused { font-size: 0.85rem; }
-            nav { gap: 0.6rem; }
+            nav { gap: 0.7rem; }
             .nav-link { font-size: 0.68rem; }
+            .nav-home { display: none; }
             .hero-slideshow { height: 42vh; margin-top: 55px; }
             .preview-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+            .tile-label { font-size: 0.72rem; padding: 2rem 0.6rem 0.6rem; }
             .insta-grid { grid-template-columns: repeat(2, 1fr); }
             .feature-box { padding: 1.5rem; }
         }
@@ -147,57 +168,77 @@
     <header>
         <a href="index.html" class="brand-wrapper">
             <img src="logo.jpeg" alt="KB Media Logo" class="brand-logo-img">
-            <div class="logo-text-fused"><span class="fused-mark">K3</span> MEDIA</div>
+            <div class="logo-text-fused"><span class="fused-mark">KB</span> MEDIA</div>
         </a>
 
         <nav>
-            <div class="nav-item">
+            <div class="nav-item nav-home">
                 <a href="index.html" class="nav-link">HOME</a>
             </div>
             <div class="nav-item">
                 <a href="portfolio.html" class="nav-link">PORTFOLIO</a>
                 <div class="dropdown">
-                    <a href="portfolio.html?cat=sports">Sports</a>
+                    <a href="portfolio.html?cat=sports">Soccer</a>
+                    <a href="portfolio.html?cat=baseball">Baseball & Softball</a>
                     <a href="portfolio.html?cat=portraits">Portraits</a>
-                    <a href="portfolio.html?cat=cars">Automotive</a>
-                    <a href="portfolio.html?cat=church">Church</a>
-                    <a href="portfolio.html?cat=weddings">Weddings</a>
+                    <a href="portfolio.html?cat=church">Events</a>
                     <a href="portfolio.html?cat=realestate">Real Estate</a>
+                    <a href="portfolio.html?cat=cars">Automotive</a>
                 </div>
             </div>
             <div class="nav-item">
-                <a href="#info-contact" class="nav-link">INFO & CONTACT</a>
+                <a href="about.html" class="nav-link">ABOUT</a>
                 <div class="dropdown">
-                    <a href="#about">About KB Media</a>
-                    <a href="#print-booth">On-Site Print Booth</a>
-                    <a href="#info-contact">Direct Contact</a>
-                    <a href="bookings.html">Book A Session</a>
+                    <a href="about.html">About KB Media</a>
+                    <a href="about.html#services">Services</a>
+                    <a href="index.html#print-booth">On-Site Print Booth</a>
+                    <a href="about.html#contact">Contact</a>
                 </div>
+            </div>
+            <div class="nav-item">
+                <a href="bookings.html" class="nav-link nav-cta">BOOK</a>
             </div>
         </nav>
     </header>
 
     <section class="hero-slideshow">
-        <div class="slide active"><img src="images/imagesSports/Sports-14.jpg" alt="Landscape Sports Action"></div>
-        <div class="slide"><img src="images/imageCars/Car-1.jpg" alt="Landscape Automotive"></div>
-        <div class="slide"><img src="images/imagesSports/Sports-11.jpg" alt="Landscape Soccer Field"></div>
-        <div class="slide"><img src="images/imageChurch/Church-4.jpg" alt="Landscape Church Service"></div>
-        <div class="slide"><img src="images/imagesRealestate/Realestate-1.jpg" alt="Landscape Real Estate"></div>
-        <div class="slide-counter" id="slideCounter">1 / 5</div>
+        <div class="slide active"><img src="images/imagesSports/Sports-9.jpg" alt="Soccer player in a pink kit striking the ball"></div>
+        <div class="slide"><img src="images/imagesSports/Sports-42.jpg" alt="Three soccer players racing for the ball"></div>
+        <div class="slide"><img src="images/imagesPortraits/Portrait-16.jpg" alt="Autumn portrait at a pumpkin stand"></div>
+        <div class="slide"><img src="images/imagesSports/Sports-48.jpg" alt="Soccer field at sunset under a pink sky"></div>
+        <div class="slide"><img src="images/imageChurch/Church-7.jpg" alt="Worship night on stage under purple lights"></div>
+        <div class="slide"><img src="images/imagesRealestate/Realestate-6.jpg" alt="Bright kitchen in a newly built Okanagan home"></div>
+        <div class="slide-counter" id="slideCounter">1 / 6</div>
     </section>
 
     <section class="intro-section" id="about">
-        <h1>Vernon & Okanagan Sports, Portrait, and Event Photography</h1>
-        <p>KB Media brings high-energy sports action, tailored portraits, and authentic media stories to life across the Okanagan region. Powered by clean composition and sharp visual narrative.</p>
-        <a href="bookings.html" class="btn-pill">Book a Session</a>
+        <h1>Okanagan Sports, Portrait & Event Photography</h1>
+        <p>Based in Vernon, BC, KB Media shoots soccer and baseball matchdays, team photos, portraits and events across the Okanagan, and prints your best shots right on the spot. Real estate sessions are available too.</p>
+        <div class="btn-row">
+            <a href="bookings.html" class="btn-pill solid">Book a Session</a>
+            <a href="portfolio.html" class="btn-pill">View Portfolio</a>
+        </div>
     </section>
 
     <section class="preview-grid-section">
+        <p class="section-label">What I Shoot</p>
         <div class="preview-grid">
-            <div class="grid-tile"><img src="images/imagesPortraits/Portrait-2.jpg" alt="Teaser 1"></div>
-            <div class="grid-tile"><img src="images/imagesSports/Sports-12.jpg" alt="Teaser 2"></div>
-            <div class="grid-tile"><img src="images/imageCars/Car-2.jpg" alt="Teaser 3"></div>
-            <div class="grid-tile"><img src="images/imagesRealestate/Realestate-3.jpg" alt="Teaser 4"></div>
+            <a class="grid-tile" href="portfolio.html?cat=sports">
+                <img src="images/thumbs/imagesSports/Sports-30.jpg" alt="Two soccer players chasing the ball" loading="lazy">
+                <div class="tile-label">Sports<span>Matchdays, tournaments, team photos</span></div>
+            </a>
+            <a class="grid-tile" href="portfolio.html?cat=portraits">
+                <img src="images/thumbs/imagesPortraits/Portrait-10.jpg" alt="Autumn portrait in a yellow jacket" loading="lazy">
+                <div class="tile-label">Portraits<span>Individuals, athletes, lifestyle</span></div>
+            </a>
+            <a class="grid-tile" href="portfolio.html?cat=church">
+                <img src="images/thumbs/imageChurch/Church-8.jpg" alt="Speaker on stage at a church event" loading="lazy">
+                <div class="tile-label">Events<span>Church, community, celebrations</span></div>
+            </a>
+            <a class="grid-tile" href="portfolio.html?cat=realestate">
+                <img src="images/thumbs/imagesRealestate/Realestate-5.jpg" alt="Interior of an Okanagan home" loading="lazy">
+                <div class="tile-label">Real Estate<span>Listings and interiors</span></div>
+            </a>
         </div>
     </section>
 
@@ -205,9 +246,10 @@
         <div class="feature-box">
             <div class="feature-text">
                 <h2>Instant Event & Matchday Prints</h2>
-                <p>"We don't just capture moments—we print them on-site. High-quality physical prints delivered directly to athletes, guests, and families during tournaments and local events using our portable print setup."</p>
+                <p>We don't just capture moments, we print them on-site. Players, families and guests take home a high-quality print before they leave the field, straight from our portable print setup at tournaments, matchdays and local events.</p>
                 <a href="bookings.html" class="btn-pill">Reserve Print Booth</a>
             </div>
+            <div class="feature-img"><img src="images/thumbs/imagesSports/Sports-35.jpg" alt="Player holding a tournament trophy" loading="lazy"></div>
         </div>
     </section>
 
@@ -219,7 +261,7 @@
             <p style="color: var(--text-muted); font-size:0.9rem; margin-bottom: 1.8rem;">
                 <strong>Direct Contact & Inquiries:</strong><br>
                 Email: <a href="mailto:kbmedia.ca@gmail.com" style="color:#fff;">kbmedia.ca@gmail.com</a><br>
-                Location: Vernon, Kelowna & Okanagan Valley, BC
+                Based in Vernon, BC. Shooting across Kelowna and the Okanagan Valley.
             </p>
             <a href="bookings.html" class="btn-pill">Book A Session</a>
         </div>
@@ -227,12 +269,12 @@
 
     <section class="insta-section">
         <div class="insta-grid">
-            <div class="insta-tile"><img src="images/imagesSports/Sports-4.jpg" alt="Insta 1"></div>
-            <div class="insta-tile"><img src="images/imagesPortraits/Portrait-4.jpg" alt="Insta 2"></div>
-            <div class="insta-tile"><img src="images/imageCars/Car-3.jpg" alt="Insta 3"></div>
-            <div class="insta-tile"><img src="images/imageChurch/Church-2.jpg" alt="Insta 4"></div>
+            <div class="insta-tile"><img src="images/thumbs/imagesSports/Sports-37.jpg" alt="Soccer player in a yellow kit at dusk" loading="lazy"></div>
+            <div class="insta-tile"><img src="images/thumbs/imagesPortraits/Portrait-13.jpg" alt="Portrait seated in front of a vintage truck" loading="lazy"></div>
+            <div class="insta-tile"><img src="images/thumbs/imagesSports/Sports-87.jpg" alt="Softball batter in a kilt at the plate" loading="lazy"></div>
+            <div class="insta-tile"><img src="images/thumbs/imagesSports/Sports-22.jpg" alt="Two soccer players battling for the ball" loading="lazy"></div>
         </div>
-        
+
         <a href="https://www.instagram.com/kbmedia.ca/" target="_blank" class="insta-overlay-card">
             <h3>Follow Me On Instagram</h3>
             <div class="handle">@KBMEDIA.CA</div>
@@ -240,7 +282,7 @@
     </section>
 
     <footer>
-        &copy; 2026 KB Media. Photo • Video • Content. | Vernon & Kelowna, BC • <a href="https://www.instagram.com/kbmedia.ca/" target="_blank">Instagram</a>
+        &copy; 2026 KB Media. Photo • Video • Content. | Based in Vernon, BC • <a href="mailto:kbmedia.ca@gmail.com">kbmedia.ca@gmail.com</a> • <a href="https://www.instagram.com/kbmedia.ca/" target="_blank">Instagram</a>
     </footer>
 
     <script>
