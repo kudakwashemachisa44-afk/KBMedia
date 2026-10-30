@@ -7,7 +7,10 @@
     <meta name="description" content="KB Media is a Vernon, BC photographer covering sports, portraits and events across the Okanagan, with on-site prints at matchdays and tournaments.">
     <meta property="og:title" content="KB Media | About & Services">
     <meta property="og:image" content="https://kbmediaca.com/images/imagesSports/Sports-36.jpg">
+    <meta property="og:url" content="https://kbmediaca.com/about.html">
+    <link rel="canonical" href="https://kbmediaca.com/about.html">
     <link rel="icon" href="logo.jpeg">
+    <link rel="apple-touch-icon" href="logo.jpeg">
     <style>
         :root {
             --bg-dark: #070707;
@@ -71,6 +74,14 @@
         .step::before { counter-increment: step; content: "0" counter(step); font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; color: var(--text-muted); }
         .step h3 { font-size: 1rem; margin: 0.3rem 0; }
         .step p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .faq { max-width: 800px; margin: 0 auto 4.5rem; }
+        .faq details { border-bottom: 1px solid var(--border-color); padding: 1rem 0; }
+        .faq summary { cursor: pointer; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq summary::after { content: "+"; color: var(--text-muted); font-weight: 400; }
+        .faq details[open] summary::after { content: "\2212"; }
+        .faq details p { color: var(--text-muted); font-size: 0.92rem; margin-top: 0.6rem; }
 
         .contact-card { background: var(--card-dark); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.5rem; text-align: center; }
         .contact-card p { color: var(--text-muted); margin-bottom: 1.5rem; }
@@ -163,9 +174,20 @@
             </div>
         </section>
 
+        <section id="faq">
+            <h2>Questions</h2>
+            <div class="faq">
+                <details><summary>How fast do I get my photos?</summary><p>Edited, high-resolution photos are delivered online within 24 to 48 hours of the game or session.</p></details>
+                <details><summary>Where do you shoot?</summary><p>Vernon, Kelowna and across the Okanagan Valley. Indoor and outdoor fields, gyms, diamonds and venues.</p></details>
+                <details><summary>How do the on-site prints work?</summary><p>I bring a portable printer to the game or event and print selected shots on the spot, so players and families take them home the same day. Add the print booth when you book.</p></details>
+                <details><summary>Can players or parents buy photos on their own?</summary><p>Yes. A team can book the whole game, or players can ask for their own photos from a game I'm covering. Mention it in your request.</p></details>
+                <details><summary>How do I book?</summary><p>Send a request on the <a href="bookings.html" style="color:#fff;">booking page</a> with your date, location and what you need. I reply within 24 hours to confirm.</p></details>
+            </div>
+        </section>
+
         <section class="contact-card" id="contact">
             <h2>Contact</h2>
-            <p>Email <a class="link" href="mailto:kbmedia.ca@gmail.com">kbmedia.ca@gmail.com</a> or message <a class="link" href="https://www.instagram.com/kbmedia.ca/" target="_blank">@kbmedia.ca</a> on Instagram.<br>Based in Vernon, BC. Shooting across Kelowna and the Okanagan Valley.</p>
+            <p>Email <a class="link" href="mailto:kbmedia.ca@gmail.com">kbmedia.ca@gmail.com</a> or message <a class="link" href="https://www.instagram.com/kbmedia.ca/" target="_blank" rel="noopener">@kbmedia.ca</a> on Instagram.<br>Based in Vernon, BC. Shooting across Kelowna and the Okanagan Valley.</p>
             <a href="bookings.html" class="btn-pill">Book a Session</a>
         </section>
     </main>

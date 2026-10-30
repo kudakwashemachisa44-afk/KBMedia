@@ -9,7 +9,27 @@
     <meta property="og:description" content="Sports, portrait and event photography across the Okanagan, based in Vernon, BC.">
     <meta property="og:image" content="https://kbmediaca.com/images/imagesSports/Sports-9.jpg">
     <meta property="og:url" content="https://kbmediaca.com/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://kbmediaca.com/">
     <link rel="icon" href="logo.jpeg">
+    <link rel="apple-touch-icon" href="logo.jpeg">
+    <link rel="preload" as="image" href="images/thumbs/imagesSports/Sports-9.jpg" media="(max-width: 900px)">
+    <link rel="preload" as="image" href="images/imagesSports/Sports-9.jpg" media="(min-width: 901px)">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "KB Media",
+        "description": "Sports, portrait and event photography across the Okanagan, with on-site prints at matchdays and tournaments.",
+        "url": "https://kbmediaca.com/",
+        "image": "https://kbmediaca.com/images/imagesSports/Sports-9.jpg",
+        "logo": "https://kbmediaca.com/logo.jpeg",
+        "email": "kbmedia.ca@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Vernon", "addressRegion": "BC", "addressCountry": "CA" },
+        "areaServed": ["Vernon", "Kelowna", "Okanagan Valley"],
+        "sameAs": ["https://www.instagram.com/kbmedia.ca/"]
+    }
+    </script>
     <style>
         :root {
             --bg-dark: #070707;
@@ -71,11 +91,9 @@
         .slide.active { opacity: 1; }
         .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8); }
 
-        .slide-counter {
-            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(0,0,0,0.65); padding: 5px 14px; border-radius: 20px;
-            font-size: 0.8rem; letter-spacing: 2px; border: 1px solid rgba(255,255,255,0.2);
-        }
+        .slide-dots { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+        .slide-dots span { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: background 0.3s; }
+        .slide-dots span.active { background: #fff; }
 
         .intro-section { text-align: center; max-width: 850px; margin: 3.5rem auto 2rem; padding: 0 20px; }
         .intro-section h1 { font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.5px; }
@@ -116,23 +134,21 @@
         .feature-img { flex: 0 1 320px; aspect-ratio: 4/5; border-radius: 8px; overflow: hidden; }
         .feature-img img { width: 100%; height: 100%; object-fit: cover; }
 
-        .quote-section {
+        .why-section {
             background: var(--card-dark); border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color); padding: 4rem 20px; text-align: center;
         }
-
-        .quote-box { max-width: 750px; margin: 0 auto; }
-        .quote-box blockquote { font-size: 1.4rem; font-style: italic; margin-bottom: 1rem; font-family: Georgia, serif; }
-        .quote-box cite { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 1.8rem; }
-
-        .badge-tag {
-            display: inline-block; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color);
-            color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem;
-        }
+        .why-section h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 2rem; }
+        .why-grid { max-width: 1100px; margin: 0 auto 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; text-align: left; }
+        .why-card { border-top: 2px solid var(--accent-white); padding-top: 1rem; }
+        .why-card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+        .why-card p { color: var(--text-muted); font-size: 0.9rem; }
+        .recent-teams { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.8rem; }
+        .recent-teams strong { color: #fff; }
 
         .insta-section { max-width: 1200px; margin: 4rem auto; padding: 0 15px; position: relative; }
         .insta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        .insta-tile { aspect-ratio: 1/1; border-radius: 6px; overflow: hidden; border: 1px solid var(--border-color); }
+        .insta-tile { display: block; aspect-ratio: 1/1; border-radius: 6px; overflow: hidden; border: 1px solid var(--border-color); }
         .insta-tile img { width: 100%; height: 100%; object-fit: cover; }
 
         .insta-overlay-card {
@@ -201,14 +217,15 @@
         </nav>
     </header>
 
+    <!-- Hero: phones get the 900px thumbs, and slides after the first load only when they're next up. -->
     <section class="hero-slideshow">
-        <div class="slide active"><img src="images/imagesSports/Sports-9.jpg" alt="Soccer player in a pink kit striking the ball"></div>
-        <div class="slide"><img src="images/imagesSports/Sports-42.jpg" alt="Three soccer players racing for the ball"></div>
-        <div class="slide"><img src="images/imagesPortraits/Portrait-16.jpg" alt="Autumn portrait at a pumpkin stand"></div>
-        <div class="slide"><img src="images/imagesSports/Sports-48.jpg" alt="Soccer field at sunset under a pink sky"></div>
-        <div class="slide"><img src="images/imageChurch/Church-7.jpg" alt="Worship night on stage under purple lights"></div>
-        <div class="slide"><img src="images/imagesRealestate/Realestate-6.jpg" alt="Bright kitchen in a newly built Okanagan home"></div>
-        <div class="slide-counter" id="slideCounter">1 / 6</div>
+        <div class="slide active"><img src="images/imagesSports/Sports-9.jpg" srcset="images/thumbs/imagesSports/Sports-9.jpg 900w, images/imagesSports/Sports-9.jpg 2000w" sizes="100vw" alt="Soccer player in a pink kit striking the ball" fetchpriority="high"></div>
+        <div class="slide"><img data-src="imagesSports/Sports-42.jpg" alt="Three soccer players racing for the ball"></div>
+        <div class="slide"><img data-src="imagesSports/Sports-30.jpg" alt="Two soccer players chasing the ball"></div>
+        <div class="slide"><img data-src="imagesSports/Sports-48.jpg" alt="Soccer field at sunset under a pink sky"></div>
+        <div class="slide"><img data-src="imagesPortraits/Portrait-16.jpg" alt="Autumn portrait at a pumpkin stand"></div>
+        <div class="slide"><img data-src="imageChurch/Church-7.jpg" alt="Worship night on stage under purple lights"></div>
+        <div class="slide-dots" id="slideDots"></div>
     </section>
 
     <section class="intro-section" id="about">
@@ -246,36 +263,37 @@
         <div class="feature-box">
             <div class="feature-text">
                 <h2>Instant Event & Matchday Prints</h2>
-                <p>We don't just capture moments, we print them on-site. Players, families and guests take home a high-quality print before they leave the field, straight from our portable print setup at tournaments, matchdays and local events.</p>
+                <p>I don't just capture the moment, I print it on-site. Players, families and guests take home a high-quality print before they leave the field, straight from my portable print setup at tournaments, matchdays and local events.</p>
                 <a href="bookings.html" class="btn-pill">Reserve Print Booth</a>
             </div>
             <div class="feature-img"><img src="images/thumbs/imagesSports/Sports-35.jpg" alt="Player holding a tournament trophy" loading="lazy"></div>
         </div>
     </section>
 
-    <section class="quote-section" id="info-contact">
-        <div class="quote-box">
-            <blockquote>"Great photography isn't just taking pictures; it's capturing moments that redefine the narrative."</blockquote>
-            <cite>~ KB Media</cite>
-            <div class="badge-tag">⚡ 24 to 48-Hour High-Res Delivery Guaranteed</div>
-            <p style="color: var(--text-muted); font-size:0.9rem; margin-bottom: 1.8rem;">
-                <strong>Direct Contact & Inquiries:</strong><br>
-                Email: <a href="mailto:kbmedia.ca@gmail.com" style="color:#fff;">kbmedia.ca@gmail.com</a><br>
-                Based in Vernon, BC. Shooting across Kelowna and the Okanagan Valley.
-            </p>
-            <a href="bookings.html" class="btn-pill">Book A Session</a>
+    <section class="why-section" id="info-contact">
+        <h2>Why teams book KB Media</h2>
+        <div class="why-grid">
+            <div class="why-card"><h3>Photos in 24 to 48 hours</h3><p>Edited, high-resolution galleries while the game is still the talk of the team chat.</p></div>
+            <div class="why-card"><h3>Prints before you leave</h3><p>Matchday and tournament prints made at the field, so players take one home that night.</p></div>
+            <div class="why-card"><h3>A player behind the camera</h3><p>I play in the Vernon and Kelowna leagues, so I know where the big moments happen.</p></div>
         </div>
+        <p class="recent-teams">Recent work: <strong>Kalamalka United</strong> at Glenmore Field and <strong>Kelly's Kilted Closers</strong> softball.</p>
+        <p style="color: var(--text-muted); font-size:0.9rem; margin-bottom: 1.8rem;">
+            Email <a href="mailto:kbmedia.ca@gmail.com" style="color:#fff;">kbmedia.ca@gmail.com</a> or DM <a href="https://www.instagram.com/kbmedia.ca/" target="_blank" rel="noopener" style="color:#fff;">@kbmedia.ca</a>.<br>
+            Based in Vernon, BC. Shooting across Kelowna and the Okanagan Valley.
+        </p>
+        <a href="bookings.html" class="btn-pill solid">Book a Session</a>
     </section>
 
     <section class="insta-section">
         <div class="insta-grid">
-            <div class="insta-tile"><img src="images/thumbs/imagesSports/Sports-37.jpg" alt="Soccer player in a yellow kit at dusk" loading="lazy"></div>
-            <div class="insta-tile"><img src="images/thumbs/imagesPortraits/Portrait-13.jpg" alt="Portrait seated in front of a vintage truck" loading="lazy"></div>
-            <div class="insta-tile"><img src="images/thumbs/imagesSports/Sports-87.jpg" alt="Softball batter in a kilt at the plate" loading="lazy"></div>
-            <div class="insta-tile"><img src="images/thumbs/imagesSports/Sports-22.jpg" alt="Two soccer players battling for the ball" loading="lazy"></div>
+            <a class="insta-tile" href="https://www.instagram.com/kbmedia.ca/" target="_blank" rel="noopener"><img src="images/thumbs/imagesSports/Sports-37.jpg" alt="Soccer player in a yellow kit at dusk" loading="lazy"></a>
+            <a class="insta-tile" href="https://www.instagram.com/kbmedia.ca/" target="_blank" rel="noopener"><img src="images/thumbs/imagesSports/Sports-31.jpg" alt="Soccer player crouching in a yellow and black kit" loading="lazy"></a>
+            <a class="insta-tile" href="https://www.instagram.com/kbmedia.ca/" target="_blank" rel="noopener"><img src="images/thumbs/imagesSports/Sports-87.jpg" alt="Softball batter in a kilt at the plate" loading="lazy"></a>
+            <a class="insta-tile" href="https://www.instagram.com/kbmedia.ca/" target="_blank" rel="noopener"><img src="images/thumbs/imagesSports/Sports-22.jpg" alt="Two soccer players battling for the ball" loading="lazy"></a>
         </div>
 
-        <a href="https://www.instagram.com/kbmedia.ca/" target="_blank" class="insta-overlay-card">
+        <a href="https://www.instagram.com/kbmedia.ca/" target="_blank" rel="noopener" class="insta-overlay-card">
             <h3>Follow Me On Instagram</h3>
             <div class="handle">@KBMEDIA.CA</div>
         </a>
@@ -287,16 +305,34 @@
 
     <script>
         const slides = document.querySelectorAll('.slide');
-        const counter = document.getElementById('slideCounter');
+        const dotsBox = document.getElementById('slideDots');
+        const dots = [...slides].map((_, i) => {
+            const d = document.createElement('span');
+            if (i === 0) d.className = 'active';
+            dotsBox.appendChild(d);
+            return d;
+        });
         let currentSlide = 0;
+
+        // Small screens get the 900px thumbnail, big screens the full-size photo.
+        function loadSlide(i) {
+            const img = slides[i].querySelector('img');
+            if (!img.dataset.src) return;
+            const dir = window.innerWidth <= 900 ? 'images/thumbs/' : 'images/';
+            img.src = dir + img.dataset.src;
+            delete img.dataset.src;
+        }
 
         function cycleSlides() {
             slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
-            counter.innerText = `${currentSlide + 1} / ${slides.length}`;
+            dots[currentSlide].classList.add('active');
+            loadSlide((currentSlide + 1) % slides.length);
         }
 
+        window.addEventListener('load', () => loadSlide(1));
         setInterval(cycleSlides, 4000);
     </script>
 </body>

@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KB Media | Book a Session</title>
     <meta name="description" content="Book KB Media for sports, team picture day, real estate, portrait or event photography in Vernon, Kelowna and the Okanagan.">
+    <meta property="og:title" content="Book KB Media | Okanagan Sports Photography">
+    <meta property="og:image" content="https://kbmediaca.com/images/imagesSports/Sports-9.jpg">
+    <meta property="og:url" content="https://kbmediaca.com/bookings.html">
+    <link rel="canonical" href="https://kbmediaca.com/bookings.html">
     <link rel="icon" href="logo.jpeg">
+    <link rel="apple-touch-icon" href="logo.jpeg">
     <style>
         :root {
             --bg-dark: #070707;
@@ -138,7 +143,9 @@
             header { padding: 0.6rem 3%; }
             nav { gap: 0.6rem; }
             .nav-link { font-size: 0.68rem; }
+            .nav-ig { display: none; }
         }
+        .optional { text-transform: none; letter-spacing: 0; font-weight: 400; }
 
         footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem; }
     </style>
@@ -154,16 +161,17 @@
             <a href="index.html" class="nav-link">HOME</a>
             <a href="portfolio.html" class="nav-link">PORTFOLIO</a>
             <a href="about.html" class="nav-link">ABOUT</a>
-            <a href="https://www.instagram.com/kbmedia.ca/" target="_blank" class="nav-link">INSTAGRAM</a>
+            <a href="https://www.instagram.com/kbmedia.ca/" target="_blank" rel="noopener" class="nav-link nav-ig">INSTAGRAM</a>
         </nav>
     </header>
 
     <div class="booking-container">
         <div class="booking-card">
             <form id="bookingForm" action="https://formspree.io/f/maeqeewd" method="POST" onsubmit="handleFormSubmit(event)">
+                <input type="hidden" name="_subject" value="New KB Media booking request">
                 <div class="booking-header">
-                    <h1>Media Session Booking</h1>
-                    <p>Enter your shoot details below and KB Media will get back to you within 24 hours.</p>
+                    <h1>Book a Session</h1>
+                    <p>Tell me about your game, team or event and I'll get back to you within 24 hours.</p>
                 </div>
 
                 <div class="form-row">
@@ -183,8 +191,8 @@
                         <input type="email" name="email" class="form-control" placeholder="name@example.com" required>
                     </div>
                     <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" name="phone" class="form-control" placeholder="(250) 000-0000" required>
+                        <label>Phone Number <span class="optional">(optional)</span></label>
+                        <input type="tel" name="phone" class="form-control" placeholder="(250) 000-0000">
                     </div>
                 </div>
 
@@ -197,18 +205,37 @@
                     <div class="form-group">
                         <label>Service Required</label>
                         <select name="service" class="form-control" required>
-                            <option value="Sports Action">Sports Action Coverage</option>
+                            <option value="Matchday Coverage">Matchday Coverage (soccer, baseball, softball)</option>
                             <option value="Team Picture Day">Team / Club Picture Day</option>
-                            <option value="Real Estate">Real Estate Media</option>
-                            <option value="Portraits / Headshots">Portraits & Headshots</option>
-                            <option value="On-Site Print Booth">On-Site Print Booth Setup</option>
+                            <option value="Matchday + Print Booth">Matchday + On-Site Prints</option>
+                            <option value="Tournament">Tournament / Multi-Game Event</option>
+                            <option value="Portraits / Headshots">Portraits & Athlete Portraits</option>
                             <option value="Event / Church Coverage">Event & Church Media</option>
+                            <option value="Real Estate">Real Estate Media</option>
                             <option value="Other">Other / Custom Request</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Booking Date</label>
                         <input type="date" name="date" id="bookingDateInput" class="form-control" onclick="this.showPicker()" onchange="checkNoticeDate(this)" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Team / League <span class="optional">(optional)</span></label>
+                        <input type="text" name="team" class="form-control" placeholder="e.g. Bastion FC, Vernon Indoor">
+                    </div>
+                    <div class="form-group">
+                        <label>How did you hear about KB Media? <span class="optional">(optional)</span></label>
+                        <select name="referral" class="form-control">
+                            <option value="">Choose one</option>
+                            <option>Instagram</option>
+                            <option>Saw me at a game</option>
+                            <option>A friend or teammate</option>
+                            <option>Google</option>
+                            <option>Other</option>
+                        </select>
                     </div>
                 </div>
 
@@ -234,7 +261,7 @@
     </div>
 
     <footer>
-        &copy; 2026 KB Media. Photo • Video • Content. | Based in Vernon, BC
+        &copy; 2026 KB Media. Photo • Video • Content. | Based in Vernon, BC • <a href="mailto:kbmedia.ca@gmail.com" style="color:#fff;">kbmedia.ca@gmail.com</a>
     </footer>
 
     <script>

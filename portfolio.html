@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KB Media | Portfolio</title>
+    <title>Portfolio | Okanagan Soccer & Sports Photography | KB Media</title>
     <meta name="description" content="Portfolio of KB Media: soccer, baseball, portraits, events and real estate across the Okanagan, based in Vernon, BC.">
     <meta property="og:title" content="KB Media | Portfolio">
+    <meta property="og:description" content="Soccer, baseball, portraits, events and real estate across the Okanagan.">
     <meta property="og:image" content="https://kbmediaca.com/images/imagesSports/Sports-10.jpg">
+    <meta property="og:url" content="https://kbmediaca.com/portfolio.html">
+    <link rel="canonical" href="https://kbmediaca.com/portfolio.html">
     <link rel="icon" href="logo.jpeg">
+    <link rel="apple-touch-icon" href="logo.jpeg">
     <style>
         :root {
             --bg-dark: #050505;
@@ -53,6 +57,17 @@
 
         .portfolio-header { text-align: center; padding: 2.5rem 1rem 0.8rem; }
         .portfolio-header h1 { font-size: 2rem; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .portfolio-header p { color: var(--text-muted); font-size: 0.95rem; }
+
+        .cta-band { text-align: center; padding: 3rem 1rem 4rem; border-top: 1px solid var(--border-color); }
+        .cta-band h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .cta-band p { color: var(--text-muted); margin-bottom: 1.5rem; }
+        .btn-pill {
+            display: inline-block; color: #000; background: var(--accent-white);
+            padding: 10px 26px; border-radius: 30px; font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .btn-pill:hover { background: #e0e0e0; }
 
         .filters {
             display: flex; justify-content: center; gap: 0.4rem; padding: 0.8rem 1rem 2rem; flex-wrap: wrap;
@@ -90,7 +105,8 @@
             background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 2000;
         }
         .lightbox img { max-width: 90%; max-height: 85vh; object-fit: contain; border-radius: 6px; }
-        .close-lightbox { position: absolute; top: 20px; right: 25px; font-size: 2.2rem; cursor: pointer; color: #fff; z-index: 2100; }
+        .close-lightbox { position: absolute; top: 20px; right: 25px; font-size: 2.2rem; cursor: pointer; color: #fff; z-index: 2100; background: none; border: none; line-height: 1; }
+        .lightbox-caption { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1px; }
         
         .lightbox-arrow {
             position: absolute; top: 50%; transform: translateY(-50%);
@@ -140,6 +156,7 @@
 
     <div class="portfolio-header">
         <h1>Portfolio</h1>
+        <p>Soccer and sports first, plus portraits, events and real estate from around the Okanagan.</p>
     </div>
 
     <section class="filters">
@@ -156,15 +173,22 @@
         <div class="gallery-grid" id="galleryGrid"></div>
     </section>
 
-    <div class="lightbox" id="lightboxModal">
-        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-        <div class="lightbox-arrow arrow-prev" onclick="navigateLightbox(-1)">&#10094;</div>
-        <img id="lightboxTarget" src="" alt="Expanded View">
-        <div class="lightbox-arrow arrow-next" onclick="navigateLightbox(1)">&#10095;</div>
+    <section class="cta-band">
+        <h2>Want photos like these of your team?</h2>
+        <p>Matchdays, team photo days and on-site prints across Vernon, Kelowna and the Okanagan.</p>
+        <a href="bookings.html" class="btn-pill">Book a Session</a>
+    </section>
+
+    <div class="lightbox" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Photo viewer">
+        <button class="close-lightbox" onclick="closeLightbox()" aria-label="Close">&times;</button>
+        <button class="lightbox-arrow arrow-prev" onclick="navigateLightbox(-1)" aria-label="Previous photo">&#10094;</button>
+        <img id="lightboxTarget" src="" alt="">
+        <button class="lightbox-arrow arrow-next" onclick="navigateLightbox(1)" aria-label="Next photo">&#10095;</button>
+        <div class="lightbox-caption" id="lightboxCaption"></div>
     </div>
 
     <footer>
-        &copy; 2026 KB Media. Photo • Video • Content. | <a href="https://www.instagram.com/kbmedia.ca/" target="_blank">Instagram</a>
+        &copy; 2026 KB Media. Photo • Video • Content. | Based in Vernon, BC • <a href="mailto:kbmedia.ca@gmail.com">kbmedia.ca@gmail.com</a> • <a href="https://www.instagram.com/kbmedia.ca/" target="_blank" rel="noopener">Instagram</a>
     </footer>
 
     <script>
@@ -182,7 +206,7 @@
         const byCategory = categories.map(c => c.nums.map(n => ({
             category: c.key,
             tag: c.tag,
-            title: `${c.tag} photo by KB Media`,
+            title: `${c.tag} photography by KB Media, Okanagan BC`,
             thumb: `images/thumbs/${c.folder}/${c.prefix}-${n}.jpg`,
             src: `images/${c.folder}/${c.prefix}-${n}.jpg`
         })));
@@ -220,9 +244,17 @@
             renderGrid(category);
         }
 
+        function showLightboxItem() {
+            const item = activeItemsList[currentLightboxIndex];
+            const img = document.getElementById('lightboxTarget');
+            img.src = item.src;
+            img.alt = item.title;
+            document.getElementById('lightboxCaption').textContent = `${item.tag} • ${currentLightboxIndex + 1} / ${activeItemsList.length}`;
+        }
+
         function openLightbox(index) {
             currentLightboxIndex = index;
-            document.getElementById('lightboxTarget').src = activeItemsList[currentLightboxIndex].src;
+            showLightboxItem();
             document.getElementById('lightboxModal').style.display = 'flex';
         }
 
@@ -230,7 +262,7 @@
 
         function navigateLightbox(direction) {
             currentLightboxIndex = (currentLightboxIndex + direction + activeItemsList.length) % activeItemsList.length;
-            document.getElementById('lightboxTarget').src = activeItemsList[currentLightboxIndex].src;
+            showLightboxItem();
         }
 
         document.addEventListener('keydown', (e) => {
@@ -259,6 +291,12 @@
 
         const urlParams = new URLSearchParams(window.location.search);
         filterGallery(urlParams.get('cat') || 'all');
+
+        // Keep the address in sync so a filtered view can be shared as a link.
+        document.querySelectorAll('.filter-btn').forEach(b => b.addEventListener('click', () => {
+            const url = b.dataset.cat === 'all' ? 'portfolio.html' : `portfolio.html?cat=${b.dataset.cat}`;
+            history.replaceState(null, '', url);
+        }));
     </script>
 </body>
 </html>
